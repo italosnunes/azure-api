@@ -1,0 +1,30 @@
+{
+  "name": "azure",
+  "version": "1.0.0",
+  "description": "Biblioteca de abstração com Azure",
+  "main": "src/azure.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://git.cloudwiser.com.br/cloud-wiser/azure"
+  },
+  "author": "Matheus Moraes de Almeida",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://git.cloudwiser.com.br/cloud-wiser/azure/issues"
+  },
+  "homepage": "https://git.cloudwiser.com.br/cloud-wiser/azure#readme",
+  "dependencies": {
+    "@azure/arm-costmanagement": "^1.0.0-beta.1",
+    "@azure/arm-subscriptions": "^5.1.0",
+    "@azure/identity": "^3.3.0",
+    "debug": "^4.3.4",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "sinon": "^15.0.2"
+  }
+}
