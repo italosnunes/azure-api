@@ -39,7 +39,31 @@ class Compute {
             reject(err);
           }
         });
-    }  
+    }   
+
+    listDisks() {
+        return new Promise(async (resolve, reject) => {
+
+          try {
+            const subscriptions = await new Subscription(this.#token).listSubscriptions()
+            const result = new Array();
+
+            for (const subs of subscriptions) {
+                const client = new ComputeManagementClient(this.#token, subs.subscriptionId);
+          
+                for await (let item of client.disks.list()) {
+                
+                    result.push(item);
+                }
+                
+            }
+
+            resolve(result);
+          } catch (err) {
+            reject(err);
+          }
+        });
+    }    
       
 }
 
