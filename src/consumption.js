@@ -25,6 +25,10 @@ class Consumption {
               const client = new ConsumptionManagementClient(this.#token, subs.subscriptionId);
               
               for await (let item of client.budgets.list(scope)) {
+                item.actualSpend = item.currentSpend.amount;
+                item.unit = item.currentSpend.unit
+                delete item.currentSpend;
+                
                 result.push(item);
               }
             }
