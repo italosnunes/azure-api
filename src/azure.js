@@ -2,6 +2,8 @@ const { ClientSecretCredential } = require('@azure/identity')
 var Subscription = require('./subscription')
 var CostManagement = require('./costmanagement')
 var Consumption = require('./consumption')
+var Compute = require('./compute')
+var Resource = require('./resource')
 
 module.exports = class azure {
 
@@ -70,6 +72,14 @@ module.exports = class azure {
 
     listBudgets() {
         return new Consumption(this.#token).listBudgets()
+    }
+
+    listVirtualMachines() {
+        return new Compute(this.#token).listVirtualMachines()
+    }
+
+    listResourceGroups() {
+        return new Resource(this.#token).listResourceGroups()
     }
 
 }
