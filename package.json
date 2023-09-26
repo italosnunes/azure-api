@@ -17,6 +17,7 @@
   },
   "homepage": "https://git.cloudwiser.com.br/cloud-wiser/azure#readme",
   "dependencies": {
+    "@azure/arm-consumption": "^9.2.0",
     "@azure/arm-costmanagement": "^1.0.0-beta.1",
     "@azure/arm-subscriptions": "^5.1.0",
     "@azure/identity": "^3.3.0",

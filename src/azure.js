@@ -1,6 +1,7 @@
 const { ClientSecretCredential } = require('@azure/identity')
 var Subscription = require('./subscription')
-var Usage = require('./usage')
+var CostManagement = require('./costmanagement')
+var Consumption = require('./consumption')
 
 module.exports = class azure {
 
@@ -52,19 +53,23 @@ module.exports = class azure {
     }
 
     listAccountCostsByServicesFromLast12Months() {
-        return new Usage(this.#token).listAccountCostsByServicesFromLast12Months();
+        return new CostManagement(this.#token).listAccountCostsByServicesFromLast12Months();
     }
 
     listAccountCostsFromLast12Months() {
-        return new Usage(this.#token).listAccountCostsFromLast12Months()
+        return new CostManagement(this.#token).listAccountCostsFromLast12Months()
     }
 
     getActualYearTotalUsage() {
-        return new Usage(this.#token).getActualYearTotalUsage()
+        return new CostManagement(this.#token).getActualYearTotalUsage()
     }
 
     listAccountCostsByRegionsFromLast12Months() {
-        return new Usage(this.#token).listAccountCostsByRegionsFromLast12Months()
+        return new CostManagement(this.#token).listAccountCostsByRegionsFromLast12Months()
+    }
+
+    listBudgets() {
+        return new Consumption(this.#token).listBudgets()
     }
 
 }

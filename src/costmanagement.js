@@ -2,7 +2,7 @@ let Util = require("./util");
 const { CostManagementClient } = require("@azure/arm-costmanagement");
 const Subscription = require("./subscription")
 
-class Usage {
+class CostManagement {
 
     #token = "";
     #util = "";
@@ -311,4 +311,4 @@ class Usage {
     }
 }
 
-module.exports = Usage
+module.exports = CostManagement
