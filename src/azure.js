@@ -4,6 +4,8 @@ var CostManagement = require('./costmanagement')
 var Consumption = require('./consumption')
 var Compute = require('./compute')
 var Resource = require('./resource')
+var Billing = require('./billing')
+var ResourceGraph = require('./resourcegraph')
 
 module.exports = class azure {
 
@@ -54,6 +56,10 @@ module.exports = class azure {
         return new Subscription(this.#token).listSubscriptions();
     }
 
+    listSubscriptionsCredits() {
+        return new Subscription(this.#token).listSubscriptionsCredits()
+    }
+
     listAccountCostsByServicesFromLast12Months() {
         return new CostManagement(this.#token).listAccountCostsByServicesFromLast12Months();
     }
@@ -70,8 +76,20 @@ module.exports = class azure {
         return new CostManagement(this.#token).listAccountCostsByRegionsFromLast12Months()
     }
 
+    last3MTotalSpent() {
+        return new CostManagement(this.#token).last3MTotalSpent()
+    }
+
     listBudgets() {
         return new Consumption(this.#token).listBudgets()
+    }
+
+    getCredits() {
+        return new Consumption(this.#token).getCredits()
+    }
+
+    listLots() {
+        return new Consumption(this.#token).listLots()
     }
 
     listVirtualMachines() {
@@ -84,6 +102,22 @@ module.exports = class azure {
 
     listResourceGroups() {
         return new Resource(this.#token).listResourceGroups()
+    }
+
+    listBillingAccounts() {
+        return new Billing(this.#token).listBillingAccounts()
+    }
+
+    listBillingSubscriptions() {
+        return new Billing(this.#token).listBillingSubscriptions()
+    }
+
+    listBillingProfiles() {
+        return new Billing(this.#token).listBillingProfiles()
+    }
+
+    listResources(resource) {
+        return new ResourceGraph(this.#token).listResources(resource)
     }
 
 }

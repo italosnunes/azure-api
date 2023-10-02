@@ -309,6 +309,47 @@ class CostManagement {
             }
         })
     }
+
+    last3MTotalSpent(subscriptionId) {
+        return new Promise(async (resolve, reject) => {
+
+            try {
+                var total = 0;
+                var today = new Date();
+                var monthEnd = new Date()
+                monthEnd.setDate(today.getDate() - 1)
+                monthEnd.setHours(0,0,0,0)
+                var monthStart = new Date(monthEnd)
+                monthStart.setMonth(monthStart.getMonth() - 3)
+
+                const scope = `subscriptions/${subscriptionId}`;
+                const parameters = {
+                    type: "ActualCost",
+                    dataset: {
+                        aggregation: { totalCost: { name: "Cost", function: "Sum" } },
+                        granularity: "Monthly"
+                    },
+                    timePeriod: {
+                        from: monthStart,
+                        to: monthEnd
+                    },
+                    timeframe: "Custom",
+                };
+                const client = new CostManagementClient(this.#token);
+                const result = await client.query.usage(scope, parameters);
+
+                for (const row of result.rows) {
+                    const [value] = row.slice(0, 1);
+                    total += value
+                }
+                
+                resolve(total)
+    
+            } catch (error) {
+                reject(error);
+            }
+        })
+    }
 }
 
 module.exports = CostManagement
