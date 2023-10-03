@@ -6,6 +6,7 @@ var Compute = require('./compute')
 var Resource = require('./resource')
 var Billing = require('./billing')
 var ResourceGraph = require('./resourcegraph')
+var ResourceHealth = require('./resourcehealth')
 
 module.exports = class azure {
 
@@ -120,4 +121,11 @@ module.exports = class azure {
         return new ResourceGraph(this.#token).listResources(resource)
     }
 
+    listEvents() {
+        return new ResourceHealth(this.#token).listEvents()
+    }
+
+    listEmergingIssues() {
+        return new ResourceHealth(this.#token).listEmergingIssues()
+    }
 }

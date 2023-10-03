@@ -16,6 +16,7 @@ class ResourceGraph {
         return new Promise(async (resolve, reject) => {
 
           try {
+            //resource example: Microsoft.Compute/virtualMachines
             const query = {
               query: `Resources | where type =~ '${resource}'`
             }
