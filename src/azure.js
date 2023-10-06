@@ -101,8 +101,12 @@ module.exports = class azure {
         return new Compute(this.#token).listVirtualMachines()
     }
 
-    listDisks() {
-        return new Compute(this.#token).listDisks()
+    listDataDisks() {
+        return new Compute(this.#token).listDataDisks()
+    }
+
+    listOSDisks() {
+        return new Compute(this.#token).listOSDisks()
     }
 
     listResourceGroups() {

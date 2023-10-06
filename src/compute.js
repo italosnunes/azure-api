@@ -26,11 +26,25 @@ class Compute {
     });
   }
 
-  listDisks() {
+  listDataDisks() {
     return new Promise(async (resolve, reject) => {
 
       try {
-        const result = await new ResourceGraph(this.#token).listResources("Resources | where type =~ 'Microsoft.Compute/disks'")
+        const result = await new ResourceGraph(this.#token).listResources("Resources | where type =~ 'Microsoft.Compute/disks' | where isnull(properties.osType)")
+
+        resolve(result);
+      } catch (err) {
+        reject(err);
+      }
+
+    });
+  }    
+
+  listOSDisks() {
+    return new Promise(async (resolve, reject) => {
+
+      try {
+        const result = await new ResourceGraph(this.#token).listResources("Resources | where type =~ 'Microsoft.Compute/disks' | where isnotnull(properties.osType)")
 
         resolve(result);
       } catch (err) {
