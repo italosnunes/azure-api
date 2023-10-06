@@ -41,6 +41,20 @@ class Network {
     });
   }   
 
+  listFirewalls() {
+    return new Promise(async (resolve, reject) => {
+
+      try {
+        const result = await new ResourceGraph(this.#token).listResources("Resources | where type =~ 'Microsoft.Network/azurefirewalls'")
+
+        resolve(result);
+      } catch (err) {
+        reject(err);
+      }
+      
+    });
+  }  
+
   listFirewallPolicies() {
     return new Promise(async (resolve, reject) => {
 

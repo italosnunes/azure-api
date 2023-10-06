@@ -145,6 +145,10 @@ module.exports = class azure {
         return new Network(this.#token).listVirtualNetworks()
     }
 
+    listFirewalls() {
+        return new Network(this.#token).listFirewalls()
+    }
+
     listFirewallPolicies() {
         return new Network(this.#token).listFirewallPolicies()
     }
