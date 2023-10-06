@@ -7,6 +7,10 @@ var Resource = require('./resource')
 var Billing = require('./billing')
 var ResourceGraph = require('./resourcegraph')
 var ResourceHealth = require('./resourcehealth')
+var Advisor = require('./advisor')
+var Network = require('./network')
+var Storage = require('./storage')
+var Kubernetes = require('./kubernetes')
 
 module.exports = class azure {
 
@@ -127,5 +131,53 @@ module.exports = class azure {
 
     listEmergingIssues() {
         return new ResourceHealth(this.#token).listEmergingIssues()
+    }
+
+    listRecommendations() {
+        return new Advisor(this.#token).listRecommendations()
+    }
+
+    listVirtualNetworks() {
+        return new Network(this.#token).listVirtualNetworks()
+    }
+
+    listFirewallPolicies() {
+        return new Network(this.#token).listFirewallPolicies()
+    }
+
+    listNatGateways() {
+        return new Network(this.#token).listNatGateways()
+    }
+
+    listNetworkInterfaces() {
+        return new Network(this.#token).listNetworkInterfaces()
+    }
+
+    listNetworkSecurityGroups() {
+        return new Network(this.#token).listNetworkSecurityGroups()
+    }
+
+    listRouteTables() {
+        return new Network(this.#token).listRouteTables()
+    }
+
+    listPrivateLinkServices() {
+        return new Network(this.#token).listPrivateLinkServices()
+    }
+
+    listStorageAccounts() {
+        return new Storage(this.#token).listStorageAccounts()
+    }
+
+    listContainers() {
+        return new Storage(this.#token).listContainers()
+    }
+
+    listFileShares() {
+        return new Storage(this.#token).listFileShares()
+    }
+
+    listClusters() {
+        return new Kubernetes(this.#token).listClusters()
     }
 }

@@ -1,7 +1,7 @@
 let Util = require("./util");
 const ResourceGraph = require('./resourcegraph')
 
-class Resource {
+class Advisor {
 
     #token = "";
     #util = "";
@@ -10,21 +10,21 @@ class Resource {
         this.#token = token;
         this.#util = new Util();
         return this;
-    } 
+    }
 
-    listResourceGroups() {
+    listRecommendations() {
         return new Promise(async (resolve, reject) => {
 
           try {
-            const result = await new ResourceGraph(this.#token).listResources("resourcecontainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups'")
+            const recommendations = await new ResourceGraph(this.#token).listResources("advisorresources | where type =~ 'microsoft.advisor/recommendations'")
 
-            resolve(result);
+            resolve(recommendations);
           } catch (err) {
             reject(err);
           }
         });
-    }  
+    }        
       
 }
 
-module.exports = Resource
+module.exports = Advisor

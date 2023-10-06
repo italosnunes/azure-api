@@ -2,7 +2,7 @@ let Util = require("./util");
 const Subscription = require('./subscription')
 const { MicrosoftResourceHealth } = require("@azure/arm-resourcehealth");
 
-class Compute {
+class ResourceHealth {
 
     #token = "";
     #util = "";
@@ -57,4 +57,4 @@ class Compute {
       
 }
 
-module.exports = Compute
+module.exports = ResourceHealth

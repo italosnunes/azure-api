@@ -16,9 +16,9 @@ class ResourceGraph {
         return new Promise(async (resolve, reject) => {
 
           try {
-            //resource example: Microsoft.Compute/virtualMachines
+            //resource example: "Resources | where type =~ 'Microsoft.Compute/virtualMachines'"
             const query = {
-              query: `Resources | where type =~ '${resource}'`
+              query: `${resource}`
             }
             const client = new ResourceGraphClient(this.#token);
             var result = await client.resources(query)

@@ -1,8 +1,5 @@
 let Util = require("./util");
 const { SubscriptionClient } = require("@azure/arm-subscriptions")
-const Billing = require('./billing')
-const Consumption = require('./consumption')
-const CostManagement = require('./costmanagement')
 
 class Subscription {
 
@@ -38,7 +35,10 @@ class Subscription {
 
     listSubscriptionsCredits() {
         return new Promise(async (resolve, reject) => {
-
+            const Consumption = require('./consumption')
+            const Billing = require('./billing')
+            const CostManagement = require('./costmanagement')
+            
             try {
                 const subscriptions = await this.listSubscriptions()
                 for (const subs of subscriptions) {
