@@ -1,5 +1,6 @@
 let Util = require("./util");
 const ResourceGraph = require('./resourcegraph')
+const { NetworkManagementClient } = require("@azure/arm-network");
 
 class Network {
 
@@ -101,6 +102,28 @@ class Network {
 
       try {
         const result = await new ResourceGraph(this.#token).listResources("Resources | where type =~ 'Microsoft.Network/privateLinkServices'")
+
+        resolve(result);
+      } catch (err) {
+        reject(err);
+      }
+      
+    });
+  }
+
+  listSubnets() {
+    return new Promise(async (resolve, reject) => {
+
+      try {
+        const virtualNetworks = await this.listVirtualNetworks()
+        const result = new Array();
+
+        for(const vn of virtualNetworks) {
+          const client = new NetworkManagementClient(this.#token, vn.subscriptionId)
+          for await (let item of client.subnets.list(vn.resourceGroup, vn.name)) {
+            result.push(item);
+          }
+        }
 
         resolve(result);
       } catch (err) {

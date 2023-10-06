@@ -169,6 +169,10 @@ module.exports = class azure {
         return new Network(this.#token).listPrivateLinkServices()
     }
 
+    listSubnets() {
+        return new Network(this.#token).listSubnets()
+    }
+
     listStorageAccounts() {
         return new Storage(this.#token).listStorageAccounts()
     }

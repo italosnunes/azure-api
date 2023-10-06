@@ -21,6 +21,7 @@
     "@azure/arm-compute": "^21.2.0",
     "@azure/arm-consumption": "^9.2.0",
     "@azure/arm-costmanagement": "^1.0.0-beta.1",
+    "@azure/arm-network": "^32.2.0",
     "@azure/arm-resourcegraph": "^4.2.1",
     "@azure/arm-resourcehealth": "^4.0.0",
     "@azure/arm-resources": "^5.2.0",
